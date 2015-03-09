@@ -10,7 +10,7 @@ using System.Collections;
 
 public class JoystickTest : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 2f;
 	
 	void OnEnable()
     {
@@ -25,6 +25,11 @@ public class JoystickTest : MonoBehaviour
     private void Joystick_On_JoystickHolding(Joystick joystick)
     {
         if(joystick.JoystickName == "NguiJoystick")
+        {
+            transform.rotation = Quaternion.LookRotation(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y));
+            transform.Translate(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y) * speed * Time.deltaTime, Space.World);
+        }
+        if (joystick.JoystickName == "NguiJoystickTop")
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y));
             transform.Translate(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y) * speed * Time.deltaTime, Space.World);
