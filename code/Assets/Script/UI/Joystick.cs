@@ -83,7 +83,6 @@ public class Joystick : MonoBehaviour
 
         if (!isForBid && isHolding)
         {
-            Debug.Log("111111");
             if (On_JoystickHolding != null)
             {
                 On_JoystickHolding(this);
@@ -115,7 +114,7 @@ public class Joystick : MonoBehaviour
             Debug.Log("joystick is forbid!");
             return;
         }
-        Debug.Log("OnPress:" + isPressed.ToString());
+        //Debug.Log("OnPress:" + isPressed.ToString());
         if(isPressed)
         {
             Lighting(1f);
