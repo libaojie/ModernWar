@@ -1,13 +1,9 @@
-﻿/*
- * 描术：
- * 
- * 作者：AnYuanLzh
- * 公司：lexun
- * 时间：2014-xx-xx
- */
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 左边控制Tank移动的摇杆
+/// </summary>
 public class JoystickTest1 : MonoBehaviour
 {
     public float speed = 2f;

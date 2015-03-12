@@ -28,6 +28,7 @@ public class Joystick : MonoBehaviour
     #endregion    
 
     #region   property
+	[SerializeField] bool isReturnZero = true;
     [SerializeField] bool isRunInEditor = false;
     [SerializeField]private string joystickName = "NguiJoystick";
     public string JoystickName { get { return this.joystickName; } }
@@ -132,7 +133,14 @@ public class Joystick : MonoBehaviour
             {
 				On_JoystickMoveEnd(this);
             }
-            thumb.transform.localPosition = Vector3.zero;
+			if (isReturnZero)
+			{
+				thumb.transform.localPosition = Vector3.zero;
+			}
+			else
+			{
+				thumb.transform.localPosition = new Vector3(0, thumb.transform.localPosition.y, 0);
+			}
             FadeOut(1f, minAlpha);
             isHolding = false;
         }
