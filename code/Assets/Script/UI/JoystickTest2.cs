@@ -39,14 +39,6 @@ public class JoystickTest2 : MonoBehaviour
 
         }
     }
-		object syncLocker = new object();
-    private void rotateLock(Vector3 pos)
-    {
-				lock(syncLocker)
-				{
-						transform.Rotate(pos);
-				}
-    }
 
    
 }

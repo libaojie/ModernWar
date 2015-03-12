@@ -6,7 +6,15 @@ using System.Collections;
 /// </summary>
 public class JoystickTest1 : MonoBehaviour
 {
+	/// <summary>
+	/// 移动速度
+	/// </summary>
     public float MoveSpeed = 20f;
+	
+	/// <summary>
+	/// 转动速度
+	/// </summary>
+	public float RotationSpeed = 20f;
 	
 	void OnEnable()
     {
@@ -20,10 +28,10 @@ public class JoystickTest1 : MonoBehaviour
 
     private void Joystick_On_JoystickHolding(Joystick joystick)
     {
-        if(joystick.JoystickName == "NguiJoystick")
+        if (joystick.JoystickName == "NguiJoystick")
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y));
-            transform.Translate(new Vector3(joystick.JoystickAxis.x, 0f, joystick.JoystickAxis.y) * MoveSpeed * Time.deltaTime, Space.World);
+			transform.Rotate (new Vector3 (0f, joystick.JoystickAxis.x * RotationSpeed, 0f));
+			transform.Translate (Vector3.forward * joystick.JoystickAxis.y * MoveSpeed * Time.deltaTime);
         }
         
     }
