@@ -9,7 +9,12 @@ public class Global{
 	/// <summary>
 	/// 当前Scence名
 	/// </summary>
-		public static string ScenceName = "Hawaii";
+	public static string ScenceName = "Hawaii";
+
+	/// <summary>
+	/// 武器开火锁
+	/// </summary>
+	public static object FireLock = new object();
 
 
 }

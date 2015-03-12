@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Threading;
 using System;
 
 /// <summary>
@@ -18,10 +19,9 @@ public class WeaponFire : MonoBehaviour {
 	private WeaponLauncher weaponLauncher;
 
 	/// <summary>
-	/// 是否长按
+	/// 是否连击
 	/// </summary>
-	private Boolean isPressed = false;
-
+	private bool isConn = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,35 +32,51 @@ public class WeaponFire : MonoBehaviour {
 	void Update () {
 	
 	}
-
-
-	void OnPress(bool isPressed)
-	{
-//		Debug.Log("OnPress:"+isPressed);
-		this.isPressed = isPressed;
-
-		if (isPressed)
+		
+	void OnClick()
+	{			
+		if(!this.isConn)
 		{
-			StartCoroutine(fireAsync());
+			lock (Global.FireLock)
+			{
+				weaponLauncher.Shoot();
+			}
 		}
+		else
+		{
+			this.isConn = false;
+		}
+
+	}
+
+	void OnDoubleClick()
+	{
+		if (isConn)
+		{
+			isConn = false;
+			return;
+		}
+
+		isConn = true;
+
+		StartCoroutine(fireAsync());
 
 	}
 
 	private IEnumerator fireAsync()
 	{
+		int fireCount = 0;
 
-		while (this.isPressed)
+		while (isConn && fireCount < 10)
 		{
 			yield return new WaitForSeconds(0.1f);
-			weaponLauncher.Shoot();
+			lock (Global.FireLock)
+			{
+				weaponLauncher.Shoot();
+			}
+			fireCount++;
 		}
 
 	}
 
-	
-
-	void OnClick()
-	{			
-		//weaponLauncher.Shoot();
-	}
 }
