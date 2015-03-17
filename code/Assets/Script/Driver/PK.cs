@@ -7,7 +7,7 @@ using System.Collections;
 public class PK : MonoBehaviour {
 
 	public GameObject ActorPrefab; // reference to out test actor
-
+	public GameObject Camera;
 
 	public static bool IsInstantiated = false;
 	private const string LocalIp = "127.0.0.1"; // An IP for Network.Connect(), must always be 127.0.0.1
@@ -157,6 +157,9 @@ public class PK : MonoBehaviour {
 	void OnConnectedToServer() {
 		// Instantiating a simple test actor
 		Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
+		Camera.transform.parent = GameObject.Find("HeadPart").transform;
+		Camera.transform.position = new Vector3(0, 4, -9);
+		Camera.transform.localRotation = Quaternion.identity;
 		IsInstantiated = true;
 	}
 
@@ -164,7 +167,11 @@ public class PK : MonoBehaviour {
 		Debug.Log("OnServerInitialized");
 		// Instantiating a simple test actor
 		if (Network.isServer) {
+//			Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
 			Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
+			Camera.transform.parent = GameObject.Find("HeadPart").transform;
+			Camera.transform.position = new Vector3(0, 4, -10);
+			Camera.transform.localRotation = Quaternion.identity;
 			IsInstantiated = true;
 		}
 	} 
