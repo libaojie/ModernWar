@@ -145,13 +145,6 @@ public class PK : MonoBehaviour {
 
 		// Stopping all Bluetooth connectivity on Unity networking disconnect event
 		BluetoothMultiplayerAndroid.Disconnect();
-
-		/*TestActor[] objects = FindObjectsOfType(typeof(TestActor)) as TestActor[];
-
-		if (objects != null)
-			foreach (TestActor obj in objects) {
-				Destroy(obj.gameObject);
-			}*/
 	}
 
 	void OnConnectedToServer() {
