@@ -3,18 +3,14 @@
 namespace BehaviorDesigner.Runtime.Tasks
 {
 				[TaskCategory("Basic/Custome")]
-				public class IsHeroActive : Action
+				public class NPCFire : Action
 				{
 								public GameObject SourceTarget;
 
 								public override TaskStatus OnUpdate()
 								{
-												Debug.Log("1111");
-
-												if (!SourceTarget)
-												{
-																return TaskStatus.Failure;
-												}
+												WeaponLauncher weaponLauncher = gameObject.GetComponentsInChildren<WeaponLauncher>()[0]; 
+												weaponLauncher.Shoot();
 												return TaskStatus.Success;
 								}
 				}
