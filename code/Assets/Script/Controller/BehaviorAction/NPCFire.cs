@@ -2,7 +2,7 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-				[TaskCategory("Basic/Custome")]
+				[TaskCategory("Basic/Custom")]
 				public class NPCFire : Action
 				{
 								public GameObject SourceTarget;
