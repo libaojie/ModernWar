@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System;
+using System.Security.Cryptography;
 
 /// <summary>
 /// NPC的生成、管理
@@ -19,27 +20,32 @@ public class FightDriver : MonoBehaviour {
 				public int NPCSUM = 10;
 
 				private GameObject currentNPC;
+				private System.Random ran = new System.Random();
 
 				void Awake()
 				{
-								for(int i = 0; i < 4; i++)
+					for(int i = 0; i < CurrentMaxNPC; i++)
 								{
-												createNPC(i);
+												createNPC();
 								}
 				}
 
 				void Updata()
 				{
-
+					if (CurrentNPCNum < CurrentMaxNPC)
+					{
+						createNPC();
+					}
 				}
 
-				void createNPC(int currentNPCPoint)
+				void createNPC()
 				{
-//								int currentNPCPoint = Random.Range(0, 5); 
-
-								currentNPC = (GameObject) Instantiate(NPCPrefab, 
-																																														NPCPoints[currentNPCPoint].transform.position,
-																																														NPCPoints[currentNPCPoint].transform.rotation);
+					int currentNPCPoint = UnityEngine.Random.Range(0, CurrentMaxNPC);
+				
+					currentNPC = (GameObject) Instantiate(	NPCPrefab, 
+															NPCPoints[currentNPCPoint].transform.position,
+															NPCPoints[currentNPCPoint].transform.rotation);
+					CurrentNPCNum++;
 
 				}
 

@@ -1,9 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class Spawner : MonoBehaviour
-{
-    public GameObject ObjectSpawn;
+public class WelcomeDriver : MonoBehaviour {
+	public GameObject ObjectSpawn;
     private float timeSpawnTemp = 0;
 	public float TimeSpawn = 20;
     public float ObjectCount = 0;
