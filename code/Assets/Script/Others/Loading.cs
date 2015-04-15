@@ -39,6 +39,9 @@ public class Loading : MonoBehaviour {
 	/// <returns>The async.</returns>
 	private IEnumerator loadingAsync()
 	{
+
+		Resources.UnloadUnusedAssets();
+
 		async = Application.LoadLevelAsync(Global.ScenceName);
 
 		yield return async;

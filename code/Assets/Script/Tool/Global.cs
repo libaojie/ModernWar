@@ -9,7 +9,8 @@ public class Global{
 	/// <summary>
 	/// 当前Scence名
 	/// </summary>
-	public static string ScenceName = "PK";
+	public static string ScenceName = "Welcome";
+//	public static string ScenceName = "PK";
 //	public static string ScenceName = "Hawaii";
 
 	/// <summary>
