@@ -7,6 +7,7 @@ public class FightButton : MonoBehaviour {
 	{
 		Debug.Log("11111111");
 		Global.ScenceName = "Hawaii";
+		Global.IsPK = false;
 		Invoke("LoadLevel", 0.3f);
 	}
 

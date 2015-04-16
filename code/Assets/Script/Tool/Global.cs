@@ -18,5 +18,5 @@ public class Global{
 	/// </summary>
 	public static object FireLock = new object();
 
-
+	public static bool IsPK = false;
 }

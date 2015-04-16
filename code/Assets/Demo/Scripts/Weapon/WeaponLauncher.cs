@@ -213,7 +213,16 @@ public class WeaponLauncher : WeaponBase
 				}
 			
 				if (Muzzle) {
-					GameObject muzzle = (GameObject)GameObject.Instantiate (Muzzle, missileposition, missilerotate);
+					GameObject muzzle = null;
+//					GameObject muzzle = (GameObject)GameObject.Instantiate (Muzzle, missileposition, missilerotate);
+					if (Global.IsPK)
+					{
+						muzzle = (GameObject)Network.Instantiate(Muzzle, missileposition, missilerotate, 0); 
+					}
+					else
+					{
+						muzzle = (GameObject)GameObject.Instantiate (Muzzle, missileposition, missilerotate);
+					}
 					muzzle.transform.parent = this.transform;
 					GameObject.Destroy (muzzle, MuzzleLifeTime);
 					if (MissileOuter.Length > 0) {
@@ -226,9 +235,17 @@ public class WeaponLauncher : WeaponBase
 						Vector3 spread = new Vector3 (Random.Range (-Spread, Spread), Random.Range (-Spread, Spread), Random.Range (-Spread, Spread)) / 100;
 						Vector3 direction = this.transform.forward + spread;
 					
+						GameObject bullet = null;
 					
-					
-						GameObject bullet = (GameObject)Instantiate (Missile, missileposition, missilerotate);
+						if (Global.IsPK)
+						{
+							bullet = (GameObject)Network.Instantiate(Missile, missileposition, missilerotate, 0); 
+						}
+						else
+						{
+							bullet = (GameObject)GameObject.Instantiate (Missile, missileposition, missilerotate);
+						}
+//						GameObject bullet = (GameObject)Instantiate (Missile, missileposition, missilerotate);
 					
 						if (bullet.GetComponent<DamageBase> ()) {
 							bullet.GetComponent<DamageBase> ().Owner = Owner;
@@ -255,7 +272,17 @@ public class WeaponLauncher : WeaponBase
 						shelloutpos = ShellOuter [currentOuter];
 					}
 				
-					GameObject shell = (GameObject)Instantiate (Shell, shelloutpos.position, Random.rotation);
+										GameObject shell = null;
+					
+					if (Global.IsPK)
+					{
+						shell = (GameObject)Network.Instantiate(Shell, shelloutpos.position, Random.rotation, 0); 
+					}
+					else
+					{
+						shell = (GameObject)GameObject.Instantiate (Shell, shelloutpos.position, Random.rotation);
+					}
+//					GameObject shell = (GameObject)Instantiate (Shell, shelloutpos.position, Random.rotation);
 					GameObject.Destroy (shell.gameObject, ShellLifeTime);
 					if (shell.rigidbody) {
 						shell.rigidbody.AddForce (shelloutpos.forward * ShellOutForce);

@@ -6,6 +6,7 @@ public class PKButton : MonoBehaviour {
 	void OnClick()
 	{
 		Global.ScenceName = "PK";
+		Global.IsPK = true;
 		Invoke("LoadLevel", 0.3f);
 	}
 
