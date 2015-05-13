@@ -33,6 +33,11 @@ public class DamageManager : MonoBehaviour
         if (Effect){
             Instantiate(Effect, transform.position, transform.rotation);
 		}
+		if (this.gameObject.tag.Equals("Hero"))
+		{
+			Debug.Log ("111111111111");
+			return;
+		}
         Destroy(this.gameObject);
     }
 
