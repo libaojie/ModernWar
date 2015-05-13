@@ -113,10 +113,10 @@ public class PK : MonoBehaviour {
 			}
 			// Showing message if initialization failed for some reason
 		} else {
-			GUI.Label(new Rect(10, 10, Screen.width, 100), "Bluetooth not available. Are you running this on Bluetooth-capable Android device and AndroidManifest.xml is set up correctly?");
+			GUI.Label(new Rect(10, 10, Screen.width, 100), "Bluetooth not available.");
 		}
 
-		if (GUI.Button(new Rect(Screen.width - 100f - 15f, Screen.height - 40f - 15f, 100f, 40f), "Back")) {
+		/*if (GUI.Button(new Rect(Screen.width - 100f - 15f, Screen.height - 40f - 15f, 100f, 40f), "Back")) {
 			// Gracefully closing all Bluetooth connectivity and loading the menu
 			try {
 				BluetoothMultiplayerAndroid.StopDiscovery();
@@ -125,7 +125,7 @@ public class PK : MonoBehaviour {
 				//
 			}
 			Application.LoadLevel("");
-		}
+		}*/
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player) {
@@ -149,11 +149,12 @@ public class PK : MonoBehaviour {
 
 	void OnConnectedToServer() {
 		// Instantiating a simple test actor
-		Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
+		GameObject client = (GameObject)Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
 		Camera.transform.parent = GameObject.Find("HeadPart").transform;
 		Camera.transform.position = new Vector3(0, 4, -9);
 		Camera.transform.localRotation = Quaternion.identity;
 		IsInstantiated = true;
+		client.transform.position = new Vector3 (-60, 13, -16);
 	}
 
 	void OnServerInitialized() {
@@ -161,11 +162,12 @@ public class PK : MonoBehaviour {
 		// Instantiating a simple test actor
 		if (Network.isServer) {
 //			Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
-			Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
+			GameObject server = (GameObject)Network.Instantiate(ActorPrefab, Vector3.zero, Quaternion.identity, 0); 
 			Camera.transform.parent = GameObject.Find("HeadPart").transform;
 			Camera.transform.position = new Vector3(0, 4, -10);
 			Camera.transform.localRotation = Quaternion.identity;
 			IsInstantiated = true;
+			server.transform.position = new Vector3(-167, 5, -16);
 		}
 	} 
 

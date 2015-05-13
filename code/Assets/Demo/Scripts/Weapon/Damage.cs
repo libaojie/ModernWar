@@ -81,7 +81,7 @@ public class Damage : DamageBase
     private void OnCollisionEnter(Collision collision)
     {
 		if(HitedActive){
-			if (collision.gameObject.tag.Equals(TargetTag[0]) && collision.gameObject.tag != "Particle" && collision.gameObject.tag != this.gameObject.tag)
+			if (TargetTag.Length != 0 && collision.gameObject.tag.Equals(TargetTag[0]) && collision.gameObject.tag != "Particle" && collision.gameObject.tag != this.gameObject.tag)
         	{
             	if (!Explosive)
                 	NormalDamage(collision);
