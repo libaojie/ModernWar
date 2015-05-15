@@ -72,16 +72,25 @@ public class Damage : DamageBase
 
     private void NormalDamage(Collision collision)
     {
-        if (collision.gameObject.GetComponent<DamageManager>())
-        {
-            collision.gameObject.GetComponent<DamageManager>().ApplyDamage(Damage);
-        }
+		foreach (string s in TargetTag)
+		{
+			if (collision.gameObject.tag.Equals(s))
+			{
+				if (collision.gameObject.GetComponent<DamageManager>())
+				{
+					collision.gameObject.GetComponent<DamageManager>().ApplyDamage(Damage);
+				}
+				return;
+			}
+		}
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
 		if(HitedActive){
-			if (TargetTag.Length != 0 && collision.gameObject.tag.Equals(TargetTag[0]) && collision.gameObject.tag != "Particle" && collision.gameObject.tag != this.gameObject.tag)
+			if (collision.gameObject.tag != "Particle" && collision.gameObject.tag != this.gameObject.tag)
         	{
             	if (!Explosive)
                 	NormalDamage(collision);
