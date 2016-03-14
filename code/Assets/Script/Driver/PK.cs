@@ -154,7 +154,7 @@ public class PK : MonoBehaviour {
 		Camera.transform.position = new Vector3(0, 4, -9);
 		Camera.transform.localRotation = Quaternion.identity;
 		IsInstantiated = true;
-		client.transform.position = new Vector3 (-60, 13, -16);
+		client.transform.position = new Vector3 (-148, 20, 60);
 	}
 
 	void OnServerInitialized() {
@@ -167,7 +167,7 @@ public class PK : MonoBehaviour {
 			Camera.transform.position = new Vector3(0, 4, -10);
 			Camera.transform.localRotation = Quaternion.identity;
 			IsInstantiated = true;
-			server.transform.position = new Vector3(-167, 5, -16);
+			server.transform.position = new Vector3(-107, 20, 60);
 		}
 	} 
 
